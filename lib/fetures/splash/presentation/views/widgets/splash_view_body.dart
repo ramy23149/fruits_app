@@ -5,6 +5,23 @@ class SplashViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      children: [
+        SizedBox(
+          height: MediaQuery.of(context).size.height * .4,
+        ),
+        const Center(
+          child: Text(
+            'Fruit Market',
+            style: TextStyle(
+                fontSize: 55, fontWeight: FontWeight.w700, color: Colors.white),
+          ),
+        ),
+        Expanded(
+            child: Image.asset(
+          'assets/splash_view_image.png',
+        ))
+      ],
+    );
   }
 }
