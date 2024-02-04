@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_market_app/core/router/router.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -14,13 +16,16 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   @override
   void initState() {
-    animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 600));
-    faddingAnimation =
-        Tween<double>(begin: .2, end: 1).animate(animationController!); 
-
-    animationController?.repeat(reverse: true);
     super.initState();
+    fruitMarketAnimation();
+    navigationToOnBordingView();
+  }
+
+  @override
+  void dispose() {
+    animationController?.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -49,5 +54,20 @@ class _SplashViewBodyState extends State<SplashViewBody>
         )
       ],
     );
+  }
+
+  void fruitMarketAnimation() {
+    animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 600));
+    faddingAnimation =
+        Tween<double>(begin: .2, end: 1).animate(animationController!);
+
+    animationController?.repeat(reverse: true);
+  }
+
+  void navigationToOnBordingView() {
+    Future.delayed(const Duration(seconds: 3), () {
+      context.push(RouterApp.kOnBordingView);
+    });
   }
 }
